@@ -1,0 +1,13 @@
+FROM ubuntu:18.04
+#MAINTAINER sniper "pchen0825@163.com"
+#MAINTAINER sniper
+
+RUN  sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+
+RUN apt-get update -y && \
+    apt-get install wget -y && \
+    wget -q https://mirrors.aliyun.com/anaconda/miniconda/Miniconda3-py39_4.9.2-Linux-x86_64.sh && \
+    bash Miniconda3-py39_4.9.2-Linux-x86_64.sh -b && \
+    rm Miniconda3-py39_4.9.2-Linux-x86_64.sh -f && \
+    # source ~/.bashrc && \
+    /root/miniconda3/bin/conda create -n mrdoc python=3.9 -y
